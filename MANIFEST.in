@@ -1,0 +1,10 @@
+include LICENSE THIRD_PARTY_NOTICES.md README.md pyproject.toml
+recursive-include src/chatlens/web *.html *.css *.js
+recursive-include src/chatlens/knowledge *.json *.md
+recursive-include macos *.swift
+recursive-include scripts *.py
+recursive-include docs *.md *.png *.svg
+recursive-include examples *.json
+recursive-include requirements *.txt
+recursive-include tests *.py *.js
+global-exclude *.pyc *.pyo .DS_Store

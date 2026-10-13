@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chatlens-local"
+version = "0.1.0"
+description = "Offline conversation decision cards with local language and decision models"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+authors = [{name = "ChatLens contributors"}]
+dependencies = ["pypinyin>=0.55,<1"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Operating System :: MacOS",
+]
+
+[project.optional-dependencies]
+models = [
+  "torch>=2.6", "transformers>=5,<6", "typical-ai==0.1.1",
+  "mlx-lm>=0.32,<0.33; sys_platform == 'darwin' and platform_machine == 'arm64'",
+  "lm-format-enforcer>=0.11,<0.12", "interegular>=0.3,<0.4",
+  "huggingface-hub>=1,<2",
+]
+voice = ["mlx-whisper>=0.4; sys_platform == 'darwin'", "pilk>=0.2"]
+dev = ["build>=1.2", "ruff>=0.9"]
+test = ["torch>=2.6"]
+
+[project.scripts]
+chatlens = "chatlens.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+chatlens = ["web/*.html", "web/*.css", "web/*.js", "knowledge/galgame/*.json", "knowledge/galgame/*.md"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E9", "F63", "F7", "F82"]
