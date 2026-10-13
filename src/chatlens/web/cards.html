@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>对话建议</title>
+  <link rel="stylesheet" href="cards.css">
+</head>
+<body>
+  <header>
+    <div class="contact"><span class="live-dot" aria-hidden="true"></span><strong><select id="contact-select" aria-label="分析联系人"></select></strong></div>
+    <div class="header-actions">
+      <button id="open-history" class="icon-button" title="本地历史" aria-label="本地历史">◷</button>
+      <button id="layout-dock" class="icon-button active" title="贴靠微信右侧" aria-label="贴靠微信右侧">⇥</button>
+      <button id="refresh" class="icon-button" title="重新分析" aria-label="重新分析">↻</button>
+      <button id="dismiss" class="icon-button" title="关闭卡片" aria-label="关闭卡片">×</button>
+    </div>
+  </header>
+  <div id="workspace" class="workspace">
+    <section id="history-pane" aria-label="可点击的聊天历史">
+      <div class="history-toolbar">
+        <input id="history-query" type="search" placeholder="搜索聊天记录" aria-label="查找历史消息" autocomplete="off">
+        <button id="history-search">搜索</button><button id="history-reload">最近</button>
+      </div>
+      <div id="history-scroll">
+        <button id="older">载入更早记录</button>
+        <p id="history-empty" role="status" hidden>暂无聊天记录</p>
+        <div id="history-list"></div>
+      </div>
+    </section>
+    <section id="decision-pane" aria-label="所选位置的决策">
+      <p id="status" role="status">选择一条消息</p>
+      <p id="error" role="alert" hidden></p>
+      <div id="selected-message" hidden>
+        <p id="selected-quote"></p>
+        <div id="selected-actions"><button id="analyze-selected">分析此句</button></div>
+      </div>
+      <div id="candidates" hidden></div>
+      <section id="consent" aria-label="首次分析确认" hidden>
+        <p>是否分析此聊天？</p>
+        <div id="consent-actions"><button id="consent-enable">分析</button><button id="consent-defer">暂不</button></div>
+      </section>
+      <main id="feed"><div id="empty" class="empty-state">点击消息，查看对话建议</div></main>
+    </section>
+  </div>
+  <script>window.CARD_TOKEN='__SESSION_TOKEN__';window.CARD_CONTACTS=[];window.CARD_COMPACT=location.pathname==='/plugin';</script>
+  <script src="cards.js"></script>
+</body>
+</html>
