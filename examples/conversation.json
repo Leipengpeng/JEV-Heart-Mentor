@@ -1,0 +1,14 @@
+{
+  "contacts": [
+    {
+      "id": "synthetic-friend",
+      "name": "合成示例好友",
+      "messages": [
+        {"server_id": "1", "timestamp": 1735689600, "role": "self", "text": "周六我们去看插画展吧，我来订票。"},
+        {"server_id": "2", "timestamp": 1735689660, "role": "other", "text": "好呀，下午三点在展馆门口见怎么样？"},
+        {"server_id": "3", "timestamp": 1735689720, "role": "self", "text": "没问题，三点见。"},
+        {"server_id": "4", "timestamp": 1735689780, "role": "other", "text": "那就交给你啦，别又把自己落在家里。"}
+      ]
+    }
+  ]
+}
