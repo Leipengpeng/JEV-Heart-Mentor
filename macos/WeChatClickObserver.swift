@@ -444,11 +444,17 @@ func apiContacts() async->[String] {
             }}
         }
         publish()
-        Timer.scheduledTimer(withTimeInterval:1,repeats:true){[weak self] _ in Task{@MainActor in
-            guard let self=self,let front=NSWorkspace.shared.frontmostApplication,wechatBundles.contains(front.bundleIdentifier ?? "") else{return}
-            self.pendingObserve=true;self.next()
-        }}
-        Timer.scheduledTimer(withTimeInterval:5,repeats:true){[weak self] _ in Task{@MainActor in self?.publish()}}
+        Timer.scheduledTimer(withTimeInterval:1,repeats:true){[weak self] _ in
+            guard let observer=self else{return}
+            Task{@MainActor in
+                guard let front=NSWorkspace.shared.frontmostApplication,wechatBundles.contains(front.bundleIdentifier ?? "") else{return}
+                observer.pendingObserve=true;observer.next()
+            }
+        }
+        Timer.scheduledTimer(withTimeInterval:5,repeats:true){[weak self] _ in
+            guard let observer=self else{return}
+            Task{@MainActor in observer.publish()}
+        }
     }
     func publish() {
         let metadata:[String:Any]=["running":true,"mouse_monitor":monitor != nil,"accessibility":AXIsProcessTrusted(),
